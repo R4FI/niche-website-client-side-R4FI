@@ -1,0 +1,14 @@
+.newsletter{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 30px;
+    background-color: beige;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.fonticon{
+      font-size: 35px;
+      color: black;
+      margin-top: 10px;
+     
+  }

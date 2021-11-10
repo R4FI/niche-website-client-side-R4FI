@@ -1,0 +1,28 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footerctrl{
+
+        padding: 30px;
+        margin-top: 30px;
+
+  }
+  .listctrl{
+    background-color: transparent;
+    list-style-type: none;
+  }
+  .fonticon2{
+      font-size: 35px;
+      color: whitesmoke;
+     
+  }
+  .icon{
+        margin-left: 10px;
+  }
+
+  .foot{
+      margin-top: 15px;
+  }
