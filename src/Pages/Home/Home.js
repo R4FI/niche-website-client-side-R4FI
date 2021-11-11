@@ -7,6 +7,7 @@ import './Home.css';
 import { Button } from 'react-bootstrap';
 import Products from '../Products/Products';
 import Offer from '../Offer/Offer';
+import Footer from '../Footer/Footer';
 const Home = () => {
     return (
         <div className="sticky">

@@ -9,7 +9,7 @@ const Contact = () => {
         <div >
            <Container className="mt-5">
            <Row>
-                <Col md={6}>
+                <Col md={6} xs={12}>
          <Card className="bg-secondary text-white" style={{ width: '18rem' }}>
                 <Card.Body className="p-5">
                     <h3>Address  </h3>
@@ -22,14 +22,14 @@ const Contact = () => {
                       ----------------------------
                       <h3>web</h3>
                       <h6>info@ymail.com</h6>
-                      <h6>www.photodica.com</h6>
+                      <h6>www.photosica.com</h6>
                 </Card.Body>
                 </Card>
                 
                 
                 </Col>
 
-                <Col md={6}>
+                <Col md={6} xs={12}>
                     <h3>Get in Touch</h3>
                     <p>Terms & Conditions deleniti atque corrupti sdolores et quas molestias cepturi sint eca itate non similique sunt in culpa modi tempora 
                         incidunt obtain pain</p>

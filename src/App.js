@@ -7,18 +7,21 @@ import {
   Route,
 } from "react-router-dom";
 import Products from './Pages/Products/Products';
-import Footer from './Pages/Footer/Footer';
 import LogIn from './Pages/LogIn/LogIn';
-import Header from './Pages/Header/Header';
 import SignIn from './Pages/SignIn/SignIn';
 import ManageAllOrder from './Pages/ManageAllOrder/ManageAllOrder';
 import Contact from './Pages/Contact/Contact';
+import Header from './Pages/Header/Header';
+import Footer from './Pages/Footer/Footer';
+import AuthProvider from './context/AuthProvider/AuthProvider';
+import MyOrder from './Pages/MyOrder/MyOrder';
+import PrivateRoute from './Pages/LogIn/PrivateRoute/PrivateRoute';
 function App() {
   return (
     <div className="App">
-     
-      <Router>
-        <Header></Header>
+     <AuthProvider>
+     <Router>
+      <Header></Header>
       <Switch>
         <Route path="/home">
             <Home></Home>
@@ -29,6 +32,9 @@ function App() {
         <Route path="/product">
             <Products></Products>
         </Route>
+        <PrivateRoute path="/myOrder">
+              <MyOrder></MyOrder>
+             </PrivateRoute>
         <Route path="/manageOrders">
             <ManageAllOrder></ManageAllOrder>
            </Route>
@@ -44,9 +50,12 @@ function App() {
         <Route path="*">
        
         </Route>
-      </Switch>
-        <Footer></Footer>
+      
+      </Switch>  
+      <Footer></Footer>
      </Router>
+     </AuthProvider>
+      
     </div>
   );
 }

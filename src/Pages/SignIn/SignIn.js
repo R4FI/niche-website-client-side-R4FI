@@ -1,36 +1,88 @@
-import React from 'react';
-import { Container, Form, NavLink,Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Form, NavLink,Button, Row, Col, Alert,} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import './Sign.css';
+import useAuth from '../../hooks/useAuth';
+import { useLocation, useHistory } from 'react-router-dom';
 const SignIn = () => {
+  const [loginData,setLogIndata] = useState({});
+  const {signInUsingGoogle} = useAuth();
+  const {user,registerUser} = useAuth();
+
+  const handleOnChange = e =>{
+        const field = e.target.name;
+        const value = e.target.value;
+        const newLogInData = {...loginData};
+        newLogInData[field] = value;
+        setLogIndata(newLogInData);
+  }
+  const handleOnSubmit = e =>{
+    if (loginData.password !== loginData.password2) {
+      alert('Password Missmatch');
+      return
+    }
+    registerUser(loginData.email , loginData.password);
+    e.preventDefault();
+  }
+
+    // redirect
+    const location = useLocation();
+   const history = useHistory();
+
+   const redirect_uri = location.state?.from || '/';
+
+   const handleGoogleSignIn= () => {
+       signInUsingGoogle()
+           .then(result => {
+               history.push(redirect_uri);
+           })
+   }
+
     return (
         <div>
                 <Container className="mt-5">
-          <Form className="formctrl mx-auto">
-       
+                  <Row>
+                  <Col xs={12}>
+      <Form onSubmit={handleOnSubmit} className="formctrl mx-auto">
+       <h2>Sign In</h2>
+      
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
+    <Form.Control  name="email" onChange={handleOnChange} type="email" placeholder="Enter email" />
     <Form.Text className="text-muted">
       We'll never share your email with anyone else.
     </Form.Text>
   </Form.Group>
-
+      
+       
   <Form.Group className="mb-3" controlId="formBasicPassword">
     <Form.Label>Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
+    <Form.Control  name="password" onChange={handleOnChange} type="password" placeholder="Password" />
+    <Form.Label className="mt-4"> Confirm Password</Form.Label>
+    <Form.Control  name="password2" onChange={handleOnChange} type="password" placeholder="Password" />
   </Form.Group>
+ 
   <Button variant="outline-dark" type="submit">
    SignUp
   </Button> <br /> or <br />
-  <Button className="mt-3" variant="warning" type="submit">
+  <Button onClick={handleGoogleSignIn} className="mt-3" variant="warning" type="submit">
             SignUp With Google
   </Button>
   <NavLink as={Link} to={"/login"}>
         <h5 className="mb-3 mt-4">Already have Account? Log In</h5> </NavLink>
           </Form>
+          {/* {isLoading && <Spinner animation="border" />} */}
+
+
+
+          {user?.email && 
+      <Alert className="alertcolor"> User Added Successfully</Alert>}
+          </Col>
+          </Row>
           </Container>
         </div>
     );
 };
+
 
 export default SignIn;
