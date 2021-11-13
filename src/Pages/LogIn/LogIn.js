@@ -13,8 +13,8 @@ const LogIn = () => {
   const location = useLocation();
   const history = useHistory();
 
-  
-  const handleOnChange = e =>{
+
+  const handleOnBlur = e =>{
         const field = e.target.name;
         const value = e.target.value;
         const newLogInData = {...loginData};
@@ -34,7 +34,7 @@ const LogIn = () => {
           <h2>Log In</h2>
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Email address</Form.Label>
-    <Form.Control  name="email" onChange={handleOnChange} type="email" placeholder="Enter email" />
+    <Form.Control  name="email" onBlur={handleOnBlur} type="email" placeholder="Enter email" />
     <Form.Text className="text-muted">
       We'll never share your email with anyone else.
     </Form.Text>
@@ -42,7 +42,7 @@ const LogIn = () => {
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
     <Form.Label>Password</Form.Label>
-    <Form.Control  name="password" onChange={handleOnChange} type="password" placeholder="Password" />
+    <Form.Control  name="password" onBlur={handleOnBlur} type="password" placeholder="Password" />
   </Form.Group>
   <Button  variant="outline-dark" type="submit">
    Log In

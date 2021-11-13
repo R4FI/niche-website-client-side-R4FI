@@ -26,8 +26,9 @@ const Offer = () => {
                     <img src={lence} alt="" className="w-100" />
                     </Col>
                 </Row>
-                   
+            
             </Container>
+          
         </div>
     );
 };

@@ -1,0 +1,16 @@
+*{
+    box-sizing: border-box;
+}
+.offer-card{
+    height: 520px;
+    width: 300px;
+    margin:15px;
+    box-shadow: 3px 6px 10px lightgray ;
+    transition: 0.5s;
+}
+.offer-img img{
+    width:100%;
+}
+.offer-info{
+    padding: 5px;
+}

@@ -1,0 +1,27 @@
+.add-tourOffers{
+    padding: 50px 0;
+}
+.form-container{
+    padding: 30px;
+    border: 1px solid gray;
+    box-shadow: 3px 5px 8px lightskyblue;
+    box-sizing: border-box;
+    border-radius: 15px;
+    transition: 0.8s;
+}
+.form-container:hover{
+    background-color: lightskyblue;
+}
+.form-container form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.form-container input, textarea{
+    width: 60%;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    border-bottom: cornsilk;
+}

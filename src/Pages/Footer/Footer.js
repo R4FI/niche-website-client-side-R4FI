@@ -32,7 +32,7 @@ const Footer = () => {
     <h5>Get In Touch</h5>
     <address>
     <ul className="mb-4">
-   <li> <FontAwesomeIcon icon={faHome}/> 14 Tottenham Road, London, England.</li>
+   <li><FontAwesomeIcon icon={faHome}/> 14 Tottenham Road, London, England.</li>
    <li><FontAwesomeIcon icon={faPhone}/> (102) 6666 8888</li>
    <li><FontAwesomeIcon icon={faEnvelope}/> info@demo.com</li>
    <li><FontAwesomeIcon icon={faPhone}/> (102) 8888 9999</li>

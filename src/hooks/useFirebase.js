@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import initializeFirebase from "../Pages/Firebase/firebase.init";
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut  } from "firebase/auth";
-import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {getIdToken, GoogleAuthProvider,updateProfile, signInWithPopup} from "firebase/auth";
 
 
 initializeFirebase();
@@ -10,19 +10,34 @@ const useFirebase =()=>{
   const [error] = useState("")
  const [user,setUser] = useState({});
  const [isLoading,setisLoading] = useState(true);
+ const [admin,setAdmin] = useState(false);
+ const [token,setToken] = useState('');
  const auth = getAuth();
 
  const registerUser = (email,password,name,history)=>{
      setisLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
+      const newUser = {email,displayName:name};
+      setUser(newUser);
+        saveUser(email,name,'POST');
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      }).then(() => {
+        
+      }).catch((error) => {
+
+      });
+      
+
+      history.replace('/');
         // Signed in 
-        const user = userCredential.user;
+        // const user = userCredential.user;
         // ...
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
         // ..
       })
       .finally(()=>setisLoading(false));
@@ -34,12 +49,12 @@ const useFirebase =()=>{
     const destination = location.state?.from || '/';
     history.replace(destination);
     // Signed in 
-    const user = userCredential.user;
+    // const user = userCredential.user;
     // ...
   })
   .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
+    // const errorCode = error.code;
+    // const errorMessage = error.message;
   })
   .finally(()=>setisLoading(false)) ;
     }
@@ -51,7 +66,16 @@ const googleProvider = new GoogleAuthProvider();
 
       //user SIGN IN with google 
       const signInUsingGoogle = () => {
-        return signInWithPopup(auth, googleProvider);
+        setisLoading(true);
+       return signInWithPopup(auth, googleProvider)
+        .then((result)=>{
+          const user = result.user;
+          saveUser(user.email,user.displayName,'PUT');
+        })
+        .catch((error)=>{
+
+        })
+
     }
 
     useEffect(()=>{
@@ -59,7 +83,10 @@ const googleProvider = new GoogleAuthProvider();
             if (user) {
              
               setUser(user);
-              
+              getIdToken(user)
+              .then(idToken=>{
+                setToken(idToken);
+              })
             } 
             else {
               setUser({})
@@ -69,6 +96,12 @@ const googleProvider = new GoogleAuthProvider();
           return () => unSubscribe;
      },[])
 
+     useEffect(()=>{
+       fetch(`http://localhost:5000/users/${user.email}`)
+       .then(res => res.json())
+       .then(data=>setAdmin(data.admin))
+
+     },[user.email])
 
 
     const logout = () => {
@@ -80,9 +113,24 @@ const googleProvider = new GoogleAuthProvider();
       })
           .finally(() => setisLoading(false));
   }
- 
+ const saveUser = (email,displayName,method)=>{
+    const user = {email,displayName}
+    fetch ('http://localhost:5000/users',{
+      method : method,
+      headers:{
+        'content-type': 'application/json'
+      },
+      body:JSON.stringify(user)
+    })
+
+    .then()
+ }
+  
+
  return{
      user,
+     admin,
+     token,
      error,
      isLoading,
     registerUser,

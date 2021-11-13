@@ -4,10 +4,11 @@ import canon from '../../Images/cannon6D.png';
 import './Contact.css';
 import { faFacebook , faTwitter, faInstagram , faDribbble,} from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Footer from '../Footer/Footer';
 const Contact = () => {
     return (
         <div >
-           <Container className="mt-5">
+           <Container className="mt-5 contactBg">
            <Row>
                 <Col md={6} xs={12}>
          <Card className="bg-secondary text-white" style={{ width: '18rem' }}>
@@ -43,7 +44,7 @@ const Contact = () => {
                 <Form.Control  placeholder=" Email" />
                <Form.Control className="mt-5" placeholder="Subject" />
                  </Col>
-                 <FloatingLabel className="mt-5" controlId="floatingTextarea2" label="Comments">
+                 <FloatingLabel className="mt-5" controlId="floatingTextarea2" label=" Comments">
                 <Form.Control as="textarea"
                     placeholder="Leave a comment here"
                     style={{ height: '100px' }}
@@ -80,6 +81,7 @@ const Contact = () => {
                 </Col>
                 </Row>
                </Container>
+               <Footer></Footer>
            </div>
 
         </div>

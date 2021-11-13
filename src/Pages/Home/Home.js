@@ -7,7 +7,8 @@ import './Home.css';
 import { Button } from 'react-bootstrap';
 import Products from '../Products/Products';
 import Offer from '../Offer/Offer';
-import Footer from '../Footer/Footer';
+import { NavLink } from 'react-router-dom';
+
 const Home = () => {
     return (
         <div className="sticky">
@@ -26,7 +27,7 @@ const Home = () => {
     <Col className="text-white" md={6}>
             <h2>Capture Your</h2> 
             <h2>Beautiful Moment</h2>
-            <Button variant="outline-info">Explore</Button>
+           <NavLink to="/product"> <Button variant="outline-info">Explore</Button> </NavLink>
     </Col>
     </Row>
   </Carousel.Item>
@@ -38,7 +39,7 @@ const Home = () => {
   <Col className="text-white" md={6}>
             <h2>Capture Your</h2> 
             <h2>Beautiful Moment</h2>
-            <Button variant="outline-info">Explore</Button>
+            <NavLink to="/product"> <Button variant="outline-info">Explore</Button> </NavLink>
     </Col>
 
     <Col md={6}>
@@ -60,7 +61,7 @@ const Home = () => {
 
             <h2>Capture Your</h2> 
             <h2>Beautiful Moment</h2>
-            <Button variant="outline-info">Explore</Button>
+            <NavLink to="/product"> <Button variant="outline-info">Explore</Button> </NavLink>
 
        </Col>
        <Col md={6}>
@@ -75,9 +76,10 @@ const Home = () => {
   </Carousel.Item>
 </Carousel>
 </Container>
-
-          <Products></Products>
           <Offer></Offer>
+          <Products></Products>
+         
+          
         </div>
     );
 };

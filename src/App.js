@@ -12,10 +12,11 @@ import SignIn from './Pages/SignIn/SignIn';
 import ManageAllOrder from './Pages/ManageAllOrder/ManageAllOrder';
 import Contact from './Pages/Contact/Contact';
 import Header from './Pages/Header/Header';
-import Footer from './Pages/Footer/Footer';
 import AuthProvider from './context/AuthProvider/AuthProvider';
-import MyOrder from './Pages/MyOrder/MyOrder';
 import PrivateRoute from './Pages/LogIn/PrivateRoute/PrivateRoute';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import PlaceOrder from './Pages/PlaceOrder/PlaceOrder';
+// import MyOrders from './Pages/MyOrders/MyOrders';
 function App() {
   return (
     <div className="App">
@@ -32,8 +33,14 @@ function App() {
         <Route path="/product">
             <Products></Products>
         </Route>
-        <PrivateRoute path="/myOrder">
-              <MyOrder></MyOrder>
+        <PrivateRoute path="/dashboard">
+              <Dashboard></Dashboard>
+             </PrivateRoute>
+        {/* <PrivateRoute path="/myorder">
+              <MyOrders></MyOrders>
+             </PrivateRoute> */}
+        <PrivateRoute path="/placeOrder/:bookingId">
+              <PlaceOrder></PlaceOrder>
              </PrivateRoute>
         <Route path="/manageOrders">
             <ManageAllOrder></ManageAllOrder>
@@ -48,11 +55,8 @@ function App() {
           <Contact></Contact>
         </Route>
         <Route path="*">
-       
         </Route>
-      
       </Switch>  
-      <Footer></Footer>
      </Router>
      </AuthProvider>
       
