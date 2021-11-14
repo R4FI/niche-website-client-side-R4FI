@@ -16,10 +16,6 @@ const Header = () => {
       <Nav.Link as={Link} to={"/home"}>Home</Nav.Link>
       <Nav.Link  as={Link} to={"/product"}>Products</Nav.Link>
       <Nav.Link  as={Link} to={"/Contact"}>Contact</Nav.Link>
-      <Nav.Link as={Link} to={"/manageOrders"}>Manage All Order</Nav.Link>
-    
-      {/* <Button className="mr-5">Dashboard</Button> */}
-      {/* {user.email  &&  <Nav.Link as={Link} to={"/myorder"}>My Orders</Nav.Link>} */}
       {
         user?.email ?
         

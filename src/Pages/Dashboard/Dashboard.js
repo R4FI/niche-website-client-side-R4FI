@@ -5,32 +5,35 @@ import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import AddProducts from '../AddProduct/AddProduct';
 import MyOrders from '../MyOrders/MyOrders';
-import Button from '@mui/material/Button';
+import './Dashboard.css';
 import {
   Switch,
   Route,
   Link,
-  useRouteMatch
+  useRouteMatch,
+  NavLink
 } from "react-router-dom";
 import Paylink from './Paylink/Paylink';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
 import useAuth from '../../hooks/useAuth';
 import ManageAllOrder from '../ManageAllOrder/ManageAllOrder';
 import AdminRoute from '../LogIn/AdminRoute/AdminRoute';
+import ManageProduct from './ManageProduct/ManageProduct';
+import Reviews from './Reviews/Reviews';
+import HomeIcon from '@mui/icons-material/Home';
+import Button from '@mui/material/Button';
+import Logout from '@mui/icons-material/Logout';
+import { AddBox, AddModerator, Article, Assignment, ModeEdit, StarRate } from '@mui/icons-material';
+
+
 
 
 
@@ -85,8 +88,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function PersistentDrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const {admin} = useAuth();
-  const {user} = useAuth();
+  const {admin,user,logout} = useAuth();
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -99,9 +101,9 @@ export default function PersistentDrawerLeft() {
   
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar  position="fixed" open={open}>
         <Toolbar>
-          <IconButton
+          <IconButton 
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -115,7 +117,7 @@ export default function PersistentDrawerLeft() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
+      <Drawer 
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -128,56 +130,63 @@ export default function PersistentDrawerLeft() {
         anchor="left"
         open={open}
       >
-        <DrawerHeader>
+        <DrawerHeader >
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
         <Divider />
-
-         {user && <Box>
-          <Link to="/home"><Button>Home</Button></Link> <br />
-          <Link to={`${url}`}><Button>Pay Link</Button></Link>  <br />
-          <Link to={`${url}/ordermy`}><Button>My Order</Button></Link>
-         
-            </Box>
+          <Box  className="drawerhead" sx={{display:"flex" , alignItems:"left", flexDirection:'column'}}>
+        <Link to="/home"  underline="none" > <Button startIcon={<HomeIcon />}>Home</Button></Link>
+         { !admin &&
+          <Box >
+          <Link to={`${url}/paylink`}> <Button startIcon={<HomeIcon />}>Pay Link</Button></Link>  <br />
+          <Link  to={`${url}/ordermy`}><Button startIcon={<Article />}> My Order</Button></Link>  <br />
+          <Link  to={`${url}/review`}><Button startIcon={<StarRate />}>Reviews</Button></Link>
+          { user?.email &&
+         <Button startIcon={<Logout/>}
+         onClick={logout} >Log Out</Button>
+                  }
+           </Box>
             
-         }
-         
-         
-         {admin && <Box>
-          <Link to={`${url}/manageOrder`}><Button>Manage All Order</Button></Link>
-          <Link to={`${url}/addproduct`}><Button>Add Products</Button></Link> <br />
-          <Link to={`${url}/makeAdmin`}><Button>Make Admin</Button></Link>
+        }
+          
+          {
+            admin &&
+          <Box >
+          <Link to={url}><Button startIcon={<ModeEdit />}>Manage All Order</Button> </Link> <br />
+          <Link to={`${url}/addproduct`} > <Button startIcon={<AddBox/>}>Add Products</Button></Link> <br />
+          <Link to={`${url}/makeAdmin`}><Button startIcon={<AddModerator/>}>Make Admin</Button></Link> <br />
+          <Link to={`${url}/manageProduct`}><Button startIcon={<Assignment />}>Manage Product</Button></Link> <br />
+
+         { user?.email &&
+         <Button startIcon={<Logout/>}
+         onClick={logout} >Log Out</Button>
+                  }
+          </Box>}
           </Box>
-          }
-        <List>
-         
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
         <Typography paragraph>
             
             <Switch>
-        <Route exact path={path}>
+        <Route exact path={`${path}/paylink`}>
               <Paylink></Paylink>
         </Route>
         <Route exact path={`${path}/ordermy`}>
         <MyOrders></MyOrders>
         </Route>
+        <Route exact path={`${path}/review`}>
+          <Reviews></Reviews>
+        </Route>
         <AdminRoute exact path={`${path}/addproduct`}>
             <AddProducts></AddProducts>
         </AdminRoute>
-        <AdminRoute exact path={`${path}/manageOrder`}>
+        <AdminRoute exact path={`${path}/manageProduct`}>
+           <ManageProduct></ManageProduct>
+        </AdminRoute>
+        <AdminRoute exact path={path}>
         <ManageAllOrder></ManageAllOrder>
         </AdminRoute>
         <AdminRoute path={`${path}/makeAdmin`}>

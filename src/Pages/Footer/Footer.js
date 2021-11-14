@@ -10,9 +10,11 @@ const Footer = () => {
            
            <Row className="foot">
     <Col >
-        <h5>About Us</h5>
+       <div className="w-75 text-center">
+       <h5>About Us</h5>
         <p>The new hero pieces bring instant fashion credibility. 
             Bright florals clash with camouflage prints.</p>
+       </div>
     </Col>
 
 

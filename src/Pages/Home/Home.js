@@ -8,6 +8,8 @@ import { Button } from 'react-bootstrap';
 import Products from '../Products/Products';
 import Offer from '../Offer/Offer';
 import { NavLink } from 'react-router-dom';
+import Review from '../Review/Review';
+import Footer from '../Footer/Footer';
 
 const Home = () => {
     return (
@@ -77,9 +79,8 @@ const Home = () => {
 </Carousel>
 </Container>
           <Offer></Offer>
+          <Review></Review> 
           <Products></Products>
-         
-          
         </div>
     );
 };

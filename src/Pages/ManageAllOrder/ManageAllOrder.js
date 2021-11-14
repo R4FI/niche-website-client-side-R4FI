@@ -1,15 +1,42 @@
-import { Alert, AlertTitle } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 const ManageAllOrder = () => {
     const [allOrders, setAllOrders] = useState([]);
+    // const [updates, setUpdates] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:5000/order')
             .then(res => res.json())
             .then(data => setAllOrders(data))
     }, [allOrders]);
+
+    // // update
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/order')
+    //         .then(res => res.json())
+    //         .then(data => setUpdates(data))
+    // }, [updates]);
+
+    // const handleUpdateStatus = id => {
+    //     const proceed = window.confirm('Are you sure, You want to Update your Status')
+    //     if (proceed) {
+    //         const url = `http://localhost:5000/order/${id}`;
+    //         fetch (url , {
+    //             method: 'PATCH'
+    //         })
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 if (data.updateCount>0) {
+    //                    alert('Updated Successfully');
+    //                     const update = setUpdates.filter(status => status._id !== id);
+    //                   setUpdates(update);
+    //                 }
+    //             });
+    //     }
+
+    // }
+   
     //DELETE order
     const handleDeleteOrder = id => {
         const proceed = window.confirm('Are you sure, You want to delete your order')
@@ -20,10 +47,10 @@ const ManageAllOrder = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    if (data.deletedCount) {
-                       <AlertTitle>Deleted Successfully</AlertTitle>
+                    if (data.deletedCount>0) {
+                       alert('Deleted Successfully');
                         const remainingOrder = allOrders.filter(order => order._id !== id);
-                        setAllOrders(remainingOrder);
+                       setAllOrders(remainingOrder);
                     }
                 });
         }
@@ -34,7 +61,7 @@ const ManageAllOrder = () => {
         <div className="allOrder-container">
             <div className="container">
                 <h2 className="allOrder-title pb-3">Your Orders Available: {allOrders.length}</h2>
-                <h6>Please Reload to Se the Update</h6>
+                
                 <div className="allOrder-table">
                     <Table striped bordered hover>
                         <thead>
@@ -53,7 +80,7 @@ const ManageAllOrder = () => {
                             <tbody>
                                 <tr>
                                     <td>{index}</td>
-                                    <td>{order?.name1}</td>
+                                    <td>{order?.bookname}</td>
                                     <td>{order?.name}</td>
                                     <td>{order?.email}</td>
                                     <td>{order?.phone}</td>
@@ -63,10 +90,9 @@ const ManageAllOrder = () => {
                                         onClick={() => handleDeleteOrder(order._id)}
                                        
                                         className="btn btn-danger delete-btn px-3 py-2">Delete</button>
-                                     
-                                    <Link to={`/order/update/${order._id}`}>
-                                        <button className="btn btn-danger delete-btn px-3 py-2">Update</button>
-                                    </Link>
+                                  
+                                        <button  className="btn btn-danger delete-btn px-3 py-2">Update</button>
+                                  
 
                                 </tr>
                                
