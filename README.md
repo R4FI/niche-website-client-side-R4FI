@@ -21,3 +21,5 @@ User can give review & feedback.Which is important for us.
 ### `Home delivery`
 User can get home delivery service & we provide wordlwide delivery fecility.
 
+### `Admin`
+There is a admin section in dashboard.where admin can add product,delete product etc.
