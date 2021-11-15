@@ -9,7 +9,7 @@ import {
 import Products from './Pages/Products/Products';
 import LogIn from './Pages/LogIn/LogIn';
 import SignIn from './Pages/SignIn/SignIn';
-import ManageAllOrder from './Pages/ManageAllOrder/ManageAllOrder';
+// import ManageAllOrder from './Pages/ManageAllOrder/ManageAllOrder';
 import Contact from './Pages/Contact/Contact';
 import Header from './Pages/Header/Header';
 import AuthProvider from './context/AuthProvider/AuthProvider';
@@ -42,9 +42,9 @@ function App() {
         <PrivateRoute path="/placeOrder/:bookingId">
               <PlaceOrder></PlaceOrder>
              </PrivateRoute>
-        <Route path="/manageOrders">
+        {/* <Route path="/manageOrders">
             <ManageAllOrder></ManageAllOrder>
-           </Route>
+           </Route> */}
         <Route path="/login">
           <LogIn></LogIn>
         </Route>

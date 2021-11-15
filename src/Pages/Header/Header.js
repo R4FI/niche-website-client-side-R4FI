@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Navbar,Nav} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link,NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import './Header.css';
 const Header = () => {
@@ -16,13 +16,13 @@ const Header = () => {
       <Nav.Link as={Link} to={"/home"}>Home</Nav.Link>
       <Nav.Link  as={Link} to={"/product"}>Products</Nav.Link>
       <Nav.Link  as={Link} to={"/Contact"}>Contact</Nav.Link>
-      {
-        user?.email ?
-        
-       <Nav.Link as={Link} to="/dashboard">Dashboard
+      { 
+     
+        user?.email?
+        <Nav.Link as={Link} to={"/dashboard"}>Dashboard
         <button
         onClick={logout}
-        className="btn btn-secondary me-2">LogOut</button>
+        className="btn btn-secondary me-2">Log Out</button>
        </Nav.Link>:
        
           

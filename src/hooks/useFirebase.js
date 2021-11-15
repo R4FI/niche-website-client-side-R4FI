@@ -32,7 +32,7 @@ const useFirebase =()=>{
 
       history.replace('/');
         // Signed in 
-        // const user = userCredential.user;
+        const user = userCredential.user;
         // ...
       })
       .catch((error) => {
@@ -49,7 +49,7 @@ const useFirebase =()=>{
     const destination = location.state?.from || '/';
     history.replace(destination);
     // Signed in 
-    // const user = userCredential.user;
+    const user = userCredential.user;
     // ...
   })
   .catch((error) => {
@@ -105,7 +105,7 @@ const googleProvider = new GoogleAuthProvider();
 
 
     const logout = () => {
-      // setIsLoading(true);
+      setisLoading(true);
       signOut(auth).then(() => {
          
       }).catch((error) => {

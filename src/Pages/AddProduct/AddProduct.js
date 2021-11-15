@@ -27,7 +27,7 @@ const AddProducts = () => {
                     <textarea {...register("description")} placeholder="description" />
 
                     <input type="number" {...register("TourCost")} placeholder="Price" />
-                    <input type="number" {...register("rating")} placeholder="rating" />
+                    <input type="number" {...register("rating", { max: 5 })} placeholder="rating" />
 
                     <input {...register("image")} placeholder="image url" />
 

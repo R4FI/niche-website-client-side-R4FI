@@ -11,32 +11,29 @@ const ManageAllOrder = () => {
             .then(data => setAllOrders(data))
     }, [allOrders]);
 
-    // // update
-    // useEffect(() => {
-    //     fetch('http://localhost:5000/order')
-    //         .then(res => res.json())
-    //         .then(data => setUpdates(data))
-    // }, [updates]);
 
-    // const handleUpdateStatus = id => {
-    //     const proceed = window.confirm('Are you sure, You want to Update your Status')
-    //     if (proceed) {
-    //         const url = `http://localhost:5000/order/${id}`;
-    //         fetch (url , {
-    //             method: 'PATCH'
-    //         })
-    //             .then(res => res.json())
-    //             .then(data => {
-    //                 if (data.updateCount>0) {
-    //                    alert('Updated Successfully');
-    //                     const update = setUpdates.filter(status => status._id !== id);
-    //                   setUpdates(update);
-    //                 }
-    //             });
-    //     }
+    // update status
+    const handleUpdate = data => {
+        data.status = 'Shiped';
+        console.log(data);
+        // eslint-disable-next-line no-undef
+        fetch (`http://localhost:5000/order/${id}`,{
+            method : 'PUT',
+            headers :{
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(result=> {
+           
+                alert('Your order successfully Updated')
+                // reset('');
+           
+        })
 
-    // }
-   
+    };
+
     //DELETE order
     const handleDeleteOrder = id => {
         const proceed = window.confirm('Are you sure, You want to delete your order')
@@ -91,7 +88,7 @@ const ManageAllOrder = () => {
                                        
                                         className="btn btn-danger delete-btn px-3 py-2">Delete</button>
                                   
-                                        <button  className="btn btn-danger delete-btn px-3 py-2">Update</button>
+                                        <button onClick={()=>handleUpdate(order._id)} className="btn btn-danger delete-btn px-3 py-2">Update</button>
                                   
 
                                 </tr>

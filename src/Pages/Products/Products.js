@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Feedback from '../Feedback/Feedback';
 import Footer from '../Footer/Footer';
 import SingleProducts from '../SingleProducts/singleProducts';
 import './Products.css';
@@ -18,7 +19,7 @@ const Products = () => {
                <div className="text-center pb-3 mt-5">
                 <div className="offer-title">
                     <p>Choose Our Products</p>
-                    <h4 className="animate__animated animate__bounce">Select Your Favourite One</h4>
+                    <h4 >Select Your Favourite One</h4>
                 </div>
             </div>
             <div className="container">
@@ -33,6 +34,7 @@ const Products = () => {
                     }
                 </div>
             </div>
+            <Feedback></Feedback>
            <Footer></Footer>
         </div>
     );

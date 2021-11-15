@@ -7,10 +7,6 @@ const ManageProduct = () => {
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [products]);
-
-
-
-
     const handleDeleteOrder = id => {
         const proceed = window.confirm('Are you sure, You want to delete your order')
         if (proceed) {

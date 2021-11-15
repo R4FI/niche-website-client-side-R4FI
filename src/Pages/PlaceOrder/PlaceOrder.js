@@ -12,7 +12,7 @@ const PlaceOrder = () => {
     // const [order, setOrder] = useState({});
 
     const { register, handleSubmit,reset } = useForm();
-    const onSubmit = data=> {
+    const onSubmit = data => {
         data.status = 'Pending';
         console.log(data);
         fetch ('http://localhost:5000/order',{
