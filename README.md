@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Photosica
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is about camera store (https://photosica-firebase.web.app/home).
 
 ## Available Scripts
 
