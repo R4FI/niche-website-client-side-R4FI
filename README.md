@@ -2,9 +2,9 @@
 
 This project is about camera store (https://photosica-firebase.web.app/home).
 
-## Available Scripts
+## About Website
 
-In the project directory, you can run:
+In this website you can fin different type of camera.
 
 ### `npm start`
 
