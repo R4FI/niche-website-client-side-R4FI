@@ -6,7 +6,7 @@ const ManageAllOrder = () => {
     // const [updates, setUpdates] = useState([]);
 
     useEffect(() => {
-        fetch('http://sleepy-hamlet-47496.herokuapp.com/order')
+        fetch('https://sleepy-hamlet-47496.herokuapp.com/order')
             .then(res => res.json())
             .then(data => setAllOrders(data))
     }, [allOrders]);
@@ -17,7 +17,7 @@ const ManageAllOrder = () => {
         data.status = 'Shiped';
         console.log(data);
         // eslint-disable-next-line no-undef
-        fetch (`http://sleepy-hamlet-47496.herokuapp.com/order/${id}`,{
+        fetch (`https://sleepy-hamlet-47496.herokuapp.com/order/${id}`,{
             method : 'PUT',
             headers :{
                 'content-type' : 'application/json'
@@ -38,7 +38,7 @@ const ManageAllOrder = () => {
     const handleDeleteOrder = id => {
         const proceed = window.confirm('Are you sure, You want to delete your order')
         if (proceed) {
-            const url = `http://sleepy-hamlet-47496.herokuapp.com/order/${id}`;
+            const url = `https://sleepy-hamlet-47496.herokuapp.com/order/${id}`;
             fetch (url , {
                 method: 'DELETE'
             })

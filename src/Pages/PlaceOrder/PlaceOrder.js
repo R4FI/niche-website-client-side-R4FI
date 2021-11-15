@@ -15,7 +15,7 @@ const PlaceOrder = () => {
     const onSubmit = data => {
         data.status = 'Pending';
         console.log(data);
-        fetch ('http://sleepy-hamlet-47496.herokuapp.com/order',{
+        fetch ('https://sleepy-hamlet-47496.herokuapp.com/order',{
             method : 'POST',
             headers :{
                 'content-type' : 'application/json'
@@ -34,7 +34,7 @@ const PlaceOrder = () => {
 
     // //data load
     useEffect(() => {
-        fetch(`http://sleepy-hamlet-47496.herokuapp.com/products/${bookingId}`)
+        fetch(`https://sleepy-hamlet-47496.herokuapp.com/products/${bookingId}`)
             .then(res => res.json())
             .then(data => setBookingDetails(data));
     }, []);

@@ -13,7 +13,7 @@ const MakeAdmin = () => {
 
     const handleAdmin = e =>{
         const user = {email};
-        fetch('http://sleepy-hamlet-47496.herokuapp.com/users/admin',{
+        fetch('https://sleepy-hamlet-47496.herokuapp.com/users/admin',{
             method: 'PUT',
             headers: {
                 'auth' : `Bearer${token}`,

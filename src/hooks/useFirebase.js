@@ -97,7 +97,7 @@ const googleProvider = new GoogleAuthProvider();
      },[auth])
 
      useEffect(()=>{
-       fetch(`http://sleepy-hamlet-47496.herokuapp.com/users/${user.email}`)
+       fetch(`https://sleepy-hamlet-47496.herokuapp.com/users/${user.email}`)
        .then(res => res.json())
        .then(data=>setAdmin(data.admin))
 
@@ -115,7 +115,7 @@ const googleProvider = new GoogleAuthProvider();
   }
  const saveUser = (email,displayName,method)=>{
     const user = {email,displayName}
-    fetch ('http://sleepy-hamlet-47496.herokuapp.com/users',{
+    fetch ('https://sleepy-hamlet-47496.herokuapp.com/users',{
       method : method,
       headers:{
         'content-type': 'application/json'
