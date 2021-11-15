@@ -32,7 +32,7 @@ const useFirebase =()=>{
 
       history.replace('/');
         // Signed in 
-        const user = userCredential.user;
+        // const user = userCredential.user;
         // ...
       })
       .catch((error) => {
@@ -49,7 +49,7 @@ const useFirebase =()=>{
     const destination = location.state?.from || '/';
     history.replace(destination);
     // Signed in 
-    const user = userCredential.user;
+    // const user = userCredential.user;
     // ...
   })
   .catch((error) => {
@@ -94,10 +94,10 @@ const googleProvider = new GoogleAuthProvider();
             setisLoading(false);
           });
           return () => unSubscribe;
-     },[])
+     },[auth])
 
      useEffect(()=>{
-       fetch(`http://localhost:5000/users/${user.email}`)
+       fetch(`http://sleepy-hamlet-47496.herokuapp.com/users/${user.email}`)
        .then(res => res.json())
        .then(data=>setAdmin(data.admin))
 
@@ -115,7 +115,7 @@ const googleProvider = new GoogleAuthProvider();
   }
  const saveUser = (email,displayName,method)=>{
     const user = {email,displayName}
-    fetch ('http://localhost:5000/users',{
+    fetch ('http://sleepy-hamlet-47496.herokuapp.com/users',{
       method : method,
       headers:{
         'content-type': 'application/json'

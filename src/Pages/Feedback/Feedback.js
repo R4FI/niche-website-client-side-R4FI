@@ -15,7 +15,7 @@ const Feedback = () => {
         5: 'Excellent+',
       };
     useEffect(()=>{
-        fetch('http://localhost:5000/feedbacks')
+        fetch('http://sleepy-hamlet-47496.herokuapp.com/feedbacks')
         .then(res=> res.json())
         .then(data=> {
             allRating(data);

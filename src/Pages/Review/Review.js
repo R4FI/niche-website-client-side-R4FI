@@ -8,7 +8,7 @@ const Review = () => {
     const { register, handleSubmit,reset } = useForm();
     const onSubmit = data =>{ 
         console.log(data);
-        axios.post('http://localhost:5000/feedbacks',data)
+        axios.post('http://sleepy-hamlet-47496.herokuapp.com/feedbacks',data)
         .then(res=>{
                 reset();
                 <Alert severity="success">Thank You</Alert>

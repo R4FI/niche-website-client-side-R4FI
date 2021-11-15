@@ -3,14 +3,14 @@ import { Table } from 'react-bootstrap';
 const ManageProduct = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('http://sleepy-hamlet-47496.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [products]);
     const handleDeleteOrder = id => {
         const proceed = window.confirm('Are you sure, You want to delete your order')
         if (proceed) {
-            const url = `http://localhost:5000/products/${id}`;
+            const url = `http://sleepy-hamlet-47496.herokuapp.com/products/${id}`;
             fetch (url , {
                 method: 'DELETE'
             })
